@@ -1,0 +1,105 @@
+RAG-Study コマンド一覧
+1. 開発環境の起動・移動
+まず、毎回の開発開始時に使用するコマンドです。
+コマンド	用途
+cmd	コマンドプロンプトを起動
+cd /d D:\RAG-Study	RAGの作業フォルダへ移動
+.venv\Scripts\activate	仮想環境を有効化
+deactivate	仮想環境を終了
+
+最重要
+ 毎回の作業開始時は、次の2つを実行します。
+cd /d D:\RAG-Study
+.venv\Scripts\activate
+
+
+次の表示になれば準備完了です。
+(.venv) D:\RAG-Study>
+
+
+仮想環境はコマンドプロンプトを閉じると解除されますが、再作成する必要はありません。
+Python Packaging User Guide+1
+
+2. Python・ライブラリ関連
+コマンド	用途
+py --version	Pythonのバージョン確認
+python --version	実行されるPythonのバージョン確認
+python -m pip install ollama chromadb	Ollama・ChromaDBの導入
+python -m pip install pypdf	PDF読み込みライブラリの導入
+python -m pip list	インストール済みライブラリ一覧
+where python	使用中のPythonの場所を確認
+
+今回、pypdfの読み込み確認にも使用しました。
+python -c "from pypdf import PdfReader; print('pypdfの読み込み成功！')"
+
+
+3. Ollama関連
+コマンド	用途
+ollama list	ダウンロード済みAIモデルの確認
+ollama --version	Ollamaのバージョン確認
+
+今回使用しているモデルは次の2つです。
+モデル	用途
+qwen2.5:7b	AIの回答生成
+nomic-embed-text	文章のベクトル化
+
+4. Pythonプログラムの実行
+ここが今回の開発で最も頻繁に使った部分です。
+コマンド	プログラムの役割
+python test_ollama.py	AIとの接続確認
+python test_embedding.py	文章のベクトル化
+python test_chroma.py	ChromaDBへの登録テスト
+python test_search.py	ベクトル検索テスト
+python register_documents.py	PDF・TXTの登録
+python search_documents.py	資料の検索・出典確認
+python rag_chat.py	RAGによるAI回答
+
+特に今後よく使うのは、この3つです。
+① 資料の登録
+
+python register_documents.py
+
+
+documentsフォルダ内のPDF・TXTをDBに登録します。
+ コマンドをコピー
+
+② 資料の検索
+
+python search_documents.py
+
+
+関連する文章とファイル名・ページ番号を確認します。
+ コマンドをコピー
+
+③ AIに質問
+
+python rag_chat.py
+
+
+検索結果を参考にAIが回答します。
+ コマンドをコピー
+
+5. ファイル・フォルダ関連
+コマンド	用途
+mkdir documents	資料保存フォルダの作成
+dir	フォルダ内のファイル一覧
+dir register_documents.py	特定ファイルの存在確認
+notepad rag_chat.py	メモ帳でPythonファイルを開く
+notepad register_documents.py	登録プログラムを開く
+
+※メモ帳でコードを編集・保存し、コマンドプロンプトでは実行する、という使い分けでしたね。
+
+6. 次回から使う基本操作手順
+実際の開発では、以下の順番で作業すれば大丈夫です。
+RAG開発の再開手順
+1. コマンドプロンプトを開く
+   
+   Windowsキー + R → cmd
+2. 作業フォルダに移動
+   cd /d D:\RAG-Study
+3. 仮想環境を有効化
+   .venv\Scripts\activate
+4. 必要に応じて資料を登録
+   python register_documents.py
+5. AIに質問する
+   python rag_chat.py
